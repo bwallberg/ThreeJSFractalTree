@@ -14,23 +14,23 @@ const tree = new FractalTree(
 );
 
 tree.getBranches().forEach((branch, index) => {
-  engine.addCube(branch.getPosition(), branch.getSize(), branch.getAngle());
+  engine.addCube(branch.position, branch.size, branch.angle);
 });
 
 function update() {
   tree.grow().forEach((branch, index) => {
-      engine.addCube(branch.getPosition(), branch.getSize(), branch.getAngle());
+      engine.addCube(branch.position, branch.size, branch.angle);
   });
 }
 
-let last = 0;   
+let lastUpdate = 0;   
 function onFrame(now) {
-  const dt = now - last;
+  const delta = now - lastUpdate;
   requestAnimationFrame(onFrame);
   engine.render();
-  if (dt > 75) {
+  if (delta > 75) {
     update();
-    last = now;
+    lastUpdate = now;
   }
 }
 

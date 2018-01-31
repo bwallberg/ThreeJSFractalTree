@@ -26,33 +26,13 @@ class Branch {
   split() {
     this.isSplit = true;
   }
-
-  getIsSplit() {
-    return this.isSplit;
-  }
-
-  getPosition() {
-    return this.position;
-  }
-
-  getSize() {
-    return this.size;
-  }
-
-  getHeight() {
-    return this.size.height;
-  }
-
-  getAngle() {
-    return this.angle;
-  }
 }
 
 function createBranch(root, direction) {
-  const height = getRandomHeight(root.getHeight());
-  const angle = getRandomAngle(root.getAngle(), direction);
+  const height = getRandomHeight(root.size.height);
+  const angle = getRandomAngle(root.angle, direction);
 
-  const distance = root.getHeight() / 2 + height / 2;
+  const distance = root.size.height / 2 + height / 2;
 
   return new Branch(
     {
@@ -89,15 +69,15 @@ export default class FractalTree {
     let newBranches = [];
     if (!this.grown) {
       this.branches.forEach((branch) => {
-        if(!branch.getIsSplit()) {
+        if(!branch.isSplit) {
           branch.split();
           const branchOne = createBranch(branch, -1);
           const branchTwo = createBranch(branch, 1);
 
-          if(branchOne.getHeight() > 0) {
+          if(branchOne.size.height > 0) {
             newBranches.push(branchOne);
           }
-          if(branchTwo.getHeight() > 0) {
+          if(branchTwo.size.height > 0) {
             newBranches.push(branchTwo);
           }
         }

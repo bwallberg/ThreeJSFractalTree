@@ -38,21 +38,3 @@ class Engine {
 }
 
 export default Engine;
-
-
-/*
-  let render = function() {
-    branches.forEach((branch) => {
-      context.beginPath();
-      context.moveTo(
-        branch.start_x,
-        branch.start_y
-        );
-      context.lineTo(
-        branch.start_x + (branch.cur_length * Math.cos(branch.angle * degrees_to_radians)),
-        branch.start_y + (branch.cur_length * Math.sin(branch.angle * degrees_to_radians))
-        );
-      context.stroke();
-    });
-  };
-*/
